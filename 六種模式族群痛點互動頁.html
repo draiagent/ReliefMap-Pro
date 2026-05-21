@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>腿部舒緩儀｜六種模式</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600&family=Noto+Sans+TC:wght@300;400;500&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  background: #f5f3ef;
+  color: #1a1a2e;
+  min-height: 100vh;
+}
+
+/* ─── HEADER ─── */
+.page-header {
+  background: #1a1a2e;
+  padding: 56px 48px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.page-header::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 120% at 50% 100%, rgba(13,148,136,.2) 0%, transparent 70%);
+  pointer-events: none;
+}
+.header-tag {
+  font-size: 11px; letter-spacing: .2em; color: #0d9488;
+  text-transform: uppercase; font-weight: 500; margin-bottom: 16px;
+}
+.header-title {
+  font-family: 'Noto Serif TC', serif;
+  font-size: clamp(28px, 5vw, 52px);
+  font-weight: 300; color: #fff;
+  line-height: 1.3; margin-bottom: 16px;
+}
+.header-title em { font-style: normal; color: #0d9488; }
+.header-sub {
+  font-size: 14px; color: rgba(255,255,255,.5);
+  max-width: 480px; margin: 0 auto;
+  line-height: 1.8;
+}
+
+/* ─── MODE SELECTOR ─── */
+.selector-wrap {
+  padding: 40px 48px 0;
+  max-width: 1100px; margin: 0 auto;
+}
+.selector-label {
+  font-size: 11px; letter-spacing: .15em; color: #6b7280;
+  text-transform: uppercase; margin-bottom: 16px; font-weight: 500;
+}
+.mode-tabs {
+  display: flex; gap: 10px; flex-wrap: wrap;
+}
+.mode-tab {
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 20px; border-radius: 40px;
+  border: 1.5px solid rgba(26,26,46,.12);
+  background: #fff; cursor: pointer;
+  font-size: 13px; font-weight: 500;
+  font-family: 'Noto Sans TC', sans-serif;
+  color: #6b7280;
+  transition: all .25s;
+  white-space: nowrap;
+}
+.mode-tab:hover { border-color: var(--c); color: var(--c); }
+.mode-tab.active {
+  background: var(--c); border-color: var(--c);
+  color: #fff; box-shadow: 0 4px 16px rgba(0,0,0,.15);
+}
+.mode-tab .tab-emoji { font-size: 16px; }
+
+/* ─── MAIN PANEL ─── */
+.panel-wrap {
+  padding: 28px 48px 60px;
+  max-width: 1100px; margin: 0 auto;
+}
+.mode-panel {
+  display: none;
+  animation: fadeUp .4s ease;
+}
+.mode-panel.active { display: block; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* panel hero bar */
+.panel-hero {
+  border-radius: 20px;
+  padding: 36px 40px;
+  margin-bottom: 24px;
+  display: flex; align-items: center; gap: 32px;
+  background: var(--bg-light);
+  border: 1.5px solid var(--border-c);
+}
+.panel-icon { font-size: 64px; line-height: 1; flex-shrink: 0; }
+.panel-hero-text {}
+.panel-mode-en {
+  font-size: 11px; letter-spacing: .15em; color: var(--c);
+  text-transform: uppercase; font-weight: 500; margin-bottom: 8px;
+}
+.panel-mode-zh {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 32px; font-weight: 300;
+  color: #1a1a2e; margin-bottom: 12px;
+}
+.panel-tagline {
+  font-size: 14px; color: #6b7280; line-height: 1.7;
+}
+
+/* ─── 3-COL GRID ─── */
+.three-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+@media (max-width: 860px) {
+  .three-col { grid-template-columns: 1fr; }
+  .panel-hero { flex-direction: column; gap: 16px; text-align: center; }
+  .selector-wrap, .panel-wrap { padding-left: 20px; padding-right: 20px; }
+  .page-header { padding: 48px 20px 40px; }
+}
+@media (min-width: 861px) and (max-width: 1024px) {
+  .three-col { grid-template-columns: 1fr 1fr; }
+}
+
+/* ─── CARD ─── */
+.info-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 28px 24px;
+  border: 1px solid rgba(26,26,46,.08);
+}
+.card-head {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 20px; padding-bottom: 16px;
+  border-bottom: 1px solid rgba(26,26,46,.07);
+}
+.card-icon { font-size: 20px; }
+.card-title {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 15px; font-weight: 400; color: #1a1a2e;
+}
+.card-accent-line {
+  width: 32px; height: 2px;
+  background: var(--c); border-radius: 2px;
+  margin-left: auto; flex-shrink: 0;
+}
+
+/* pain item */
+.pain-item {
+  display: flex; gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(26,26,46,.05);
+  align-items: flex-start;
+}
+.pain-item:last-child { border-bottom: none; }
+.pain-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--c); flex-shrink: 0; margin-top: 6px;
+}
+.pain-text { font-size: 13px; color: #374151; line-height: 1.7; }
+
+/* audience tags */
+.aud-grid {
+  display: flex; flex-direction: column; gap: 10px;
+}
+.aud-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 12px 14px; border-radius: 10px;
+  background: var(--bg-light);
+}
+.aud-emoji { font-size: 22px; flex-shrink: 0; line-height: 1.2; }
+.aud-info {}
+.aud-name { font-size: 13px; font-weight: 500; color: #1a1a2e; margin-bottom: 3px; }
+.aud-detail { font-size: 12px; color: #6b7280; line-height: 1.5; }
+
+/* mechanism */
+.mech-list { display: flex; flex-direction: column; gap: 12px; }
+.mech-item {
+  display: flex; gap: 10px; align-items: flex-start;
+}
+.mech-num {
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--c); color: #fff;
+  font-size: 11px; font-weight: 500;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; margin-top: 2px;
+}
+.mech-text { font-size: 13px; color: #374151; line-height: 1.7; }
+
+/* highlight box */
+.highlight-box {
+  border-radius: 12px;
+  padding: 16px 18px;
+  background: var(--bg-light);
+  border-left: 3px solid var(--c);
+}
+.highlight-label {
+  font-size: 10px; letter-spacing: .1em;
+  color: var(--c); text-transform: uppercase;
+  font-weight: 500; margin-bottom: 6px;
+}
+.highlight-text {
+  font-size: 13px; color: #374151; line-height: 1.7;
+}
+
+/* tip badge */
+.tip-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 14px; border-radius: 20px;
+  background: var(--c); color: #fff;
+  font-size: 12px; font-weight: 500;
+  margin-top: 16px;
+}
+
+/* ─── FOOTER NOTE ─── */
+.footer-note {
+  text-align: center; font-size: 12px; color: #9ca3af;
+  padding: 24px 48px 40px;
+  max-width: 1100px; margin: 0 auto;
+}
+.footer-note strong { color: #0d9488; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="page-header">
+  <div class="header-tag">腿部舒緩儀 FE-2510H</div>
+  <h1 class="header-title">六種模式<em>精準解痛</em><br>找到你的需求</h1>
+  <p class="header-sub">每種模式針對不同族群的核心痛點，從機制到族群，一目了然。</p>
+</div>
+
+<!-- TABS -->
+<div class="selector-wrap">
+  <div class="selector-label">選擇模式查看詳情</div>
+  <div class="mode-tabs">
+    <button class="mode-tab active" style="--c:#0d9488" onclick="switchMode('relieve', this)">
+      <span class="tab-emoji">🌊</span> 釋放模式
+    </button>
+    <button class="mode-tab" style="--c:#d97706" onclick="switchMode('activation', this)">
+      <span class="tab-emoji">☀️</span> 暖身模式
+    </button>
+    <button class="mode-tab" style="--c:#7c3aed" onclick="switchMode('relax', this)">
+      <span class="tab-emoji">🌙</span> 放鬆模式
+    </button>
+    <button class="mode-tab" style="--c:#2563eb" onclick="switchMode('recovery', this)">
+      <span class="tab-emoji">⚡</span> 恢復模式
+    </button>
+    <button class="mode-tab" style="--c:#e11d48" onclick="switchMode('massage', this)">
+      <span class="tab-emoji">💆</span> 按摩模式
+    </button>
+    <button class="mode-tab" style="--c:#059669" onclick="switchMode('press', this)">
+      <span class="tab-emoji">🩺</span> 按壓模式
+    </button>
+  </div>
+</div>
+
+<!-- PANELS -->
+<div class="panel-wrap">
+
+  <!-- ① 釋放 -->
+  <div class="mode-panel active" id="panel-relieve" style="--c:#0d9488;--bg-light:#f0fdf9;--border-c:#99f6e4">
+    <div class="panel-hero">
+      <div class="panel-icon">🌊</div>
+      <div class="panel-hero-text">
+        <div class="panel-mode-en">Relieve Mode</div>
+        <div class="panel-mode-zh">釋放模式</div>
+        <div class="panel-tagline">消除久站久走後的沉重感，促進靜脈血液回流，讓腿部重獲輕盈。</div>
+      </div>
+    </div>
+    <div class="three-col">
+      <!-- 核心痛點 -->
+      <div class="info-card">
+        <div class="card-head">
+          <span class="card-icon">🎯</span>
+          <span class="card-title">核心痛點</span>
+          <span class="card-accent-line"></span>
+        </div>
+        <div class="pain-item"><div class="pain-dot"></div><div class="pain-text">久站 8–12 小時後，小腿沉重如灌鉛</div></div>
+        <div class="pain-item"><div class="pain-dot"></div><div class="pain-text">乳酸與代謝廢物堆積，痠脹感明顯</div></div>
+        <div class="pain-item"><div class="pain-dot"></div><div class="pain-text">靜脈回流不良，下肢輕微水腫</div></div>
+        <div class="pain-item"><div class="pain-dot"></div><div class="pain-text">長期積累導致靜脈曲張前期風險</div></div>
+      </div>
+      <!-- 目標族群 -->
+      <div class="info-card">
+        <div class="card-head">
+          <span class="card-icon">👥</span>
+          <span class="card-title">目標族群</span>
+          <span class="card-accent-line"></span>
+        </div>
+        <div class="aud-grid">
+          <div class="aud-item">
+            <span class="aud-emoji">👩‍⚕️</span>
+            <div class="aud-info">
+              <div class="aud-name">護士／醫護人員</div>
+              <div class="aud-detail">每日站立超過8小時，下班必備恢復</div>
+            </div>
+          </div>
+          <div class="aud-item">
+            <span class="aud-emoji">🛍️</span>
+            <div class="aud-info">
+              <div class="aud-name">百貨櫃姐／服務員</div>
+              <div class="aud-detail">站姿工作造成靜脈壓力持續累積</div>
+            </div>
+          </div>
+          <div class="aud-item">
+            <span class="aud-emoji">👩‍🏫</span>
+            <div class="aud-info">
+              <div class="aud-name">教師／導遊</div>
+              <div class="aud-detail">長時間站立教學，腿部疲勞難以舒緩</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- 改善機制 -->
+      <div class="info-card">
+        <div class="card-head">
+          <span class="card-icon">⚙️</span>
+          <span class="card-title">改善機制</span>
+          <span class="card-accent-line"></span>
+        </div>
+        <div class="mech-list">
+          <div class="mech-item"><div class="mech-num">1</div><div class="mech-text">氣囊序列充放氣模擬「擠壓-釋放」節律，強制促進靜脈血回流心臟</div></div>
+          <div class="mech-item"><div class="mech-num">2</div><div class="mech-text">加速代謝廢物（乳酸）排出，24小時內明顯舒緩沉重感</div></div>
+          <div class="mech-item"><div class="mech-num">3</div><div class="mech-text">搭配 42°C 加熱功能，血管擴張效果倍增</div></div>
+        </div>
+        <div class="tip-badge">⭐ 下班即用 20 分鐘，解決一天的疲勞</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ② 暖身 -->
+  <div class="mode-panel" id="panel-activation" style="--c:#d97706;--bg-light:#fffbeb;--border-c:#fde68a">
+    <div class="panel-hero">
+      <div class="panel-icon">☀️</div>
+      <div class="panel-hero-text">
+        <div class="panel-mode-en">Activation Mode</div>
+        <div class="panel-mode-zh">暖身模式</div>
+        <div class="panel-tagline">運動前漸進激活肌肉群，搭配加熱功能提升組織溫度，降低拉傷風險。</div>
+      </div>
+    </div>
+    <div class="three-col">
+      <div class="info-card">
+        <div class="card-head">
+          <span class="card-icon">🎯</span>
+          <span class="card-title">核心痛點</span>
+          <span class="card-accent-line"></span>
+        </div>
+        <div class="pain-item"><div class="pain-dot"></div><div class="pain-text">低溫或久坐後肌肉僵硬，血流不足</div></div>
+        <div class="pain-item"><div class="pain-dot"></div><div class="pain-text">運動前暖身不足，容易拉傷或扭傷</div></div>
+        <div class="pain-item"><div class="pain-dot"></div><div class="pain-text">晨起腿部循環差，活動受限</div></div>
+        <div class="pain-item"><div class="pain-dot"></div><div class="pain-text">未充分暖身導致運動表現下降</div></div>
+      </div>
+      <div class="info-card">
+        <div class="card-head">
+          <span class="card-icon">👥</span>
+          <span class="card-title">目標族群</span>
+          <span class="card-accent-line"></span>
+        </div>
+        <div class="aud-grid">
+          <div class="aud-item">
+            <span class="aud-emoji">⛳</span>
+            <div class="aud-info">
+              <div class="aud-name">高爾夫球友</div>
+              <div class="aud-detail">揮桿前腿部激活，提升穩定性與表現</div>
+            </div>
+          </div>
+          <div class="aud-item">
+            <span class="aud-emoji">🏓</span>
+            <div class="aud-info">
+              <div class="aud-name">匹克球選手</div>
+              <div class="aud-detail">賽前快速暖身，避免突發性拉傷</div>
+            </div>
+          </div>
+          <div class="aud-item">
+            <span class="aud-emoji">👴</span>
+            <div class="aud-info">
+              <div class="aud-name">銀髮族晨起</div>
+              <div class="aud-detail">改善晨間腿部僵硬，溫和啟動循環</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-head">
+          <span class="card-icon">⚙️</span>
+          <span class="card-title">改善機制</span>
+          <span class="card-accent-line"></span>
+        </div>
+        <div class="mech-list">
+          <div class="mech-item"><div class="mech-num">1</div><div class="mech-text">輕柔漸進式壓力，從腳踝→小腿→膝蓋循序激活肌肉群</div></div>
+          <div class="mech-item"><div class="mech-num">2</div><div class="mech-text">52°C 高溫加熱提升局部組織溫度 1–2°C，等同動態暖身效果</div></div>
+          <div class="mech-item"><div class="mech-num">3</div><div class="mech-text">促進關節滑液分泌，顯著降低運動傷害風險</div></div>
+        </div>
+        <div class="tip-badge">⭐ 陳董推薦：開桿前 15 分鐘必備</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ③ 放鬆 -->
+  <div class="mode-panel" id="panel-relax" style="--c:#7c3aed;--bg-light:#f5f3ff;--border-c:#c4b5fd">
+    <div class="panel-hero">
+      <div class="panel-icon">🌙</div>
+      <div class="panel-hero-text">
+        <div class="panel-mode-en">Relax Mode</div>
+        <div class="panel-mode-zh">放鬆模式</div>
+        <div class="panel-tagline">慢頻舒緩節律啟動副交感神經，睡前使用明顯縮短入眠時間。</div>
+      </div>
+    </div>
+    <div class="three-col">
+      <div class="info-card">
+        <div class="card-head">
+          <span class="card-icon">🎯</span>
+          <span class="card-title">核心痛點</span>
+          <span class="card-accent-line"></span>
+        </div>
+        <div class="pain-item"><div class="pain-dot"></div><div class="pain-text">壓力導致交感神經過度活化，難以放鬆</div></div>
+        <div class="pain-item"><div class="pain-dot"></div><div class="pain-text">睡前腿部緊繃，躺下仍感到不適</div></div>
+        <div class="pain-item"><div class="pain-dot"></div><div class="pain-text">長期焦慮使皮質醇偏高，影響睡眠品質</div></div>
+        <div class="pain-item"><div class="pain-dot"></div><div class="pain-text">缺乏睡前放鬆儀式，難以切換身心狀態</div></div>
+      </div>
+      <div class="info-card">
+        <div class="card-head">
+          <span class="card-icon">👥</span>
+          <span class="card-title">目標族群</span>
+          <span class="card-accent-line"></span>
+        </div>
+        <div class="aud-grid">
+          <div class="aud-item">
+            <span class="aud-emoji">💼</span>
+            <div class="aud-info">
+              <div class="aud-name">高壓上班族</div>
+              <div class="aud-detail">下班後需要身心切換的放鬆儀式</div>
+            </div>
+          </div>
+          <div class="aud-item">
+            <span class="aud-emoji">👩‍👧</span>
+            <div class="aud-info">
+              <div class="aud-name">媽媽族群</div>
+              <div class="aud-detail">全天照顧後的自我療癒時光</div>
+            </div>
+          </div>
+          <div class="aud-item">
+            <span class="aud-emoji">😴</span>
+            <div class="aud-info">
+              <div class="aud-name">失眠困擾者</div>
+              <div class="aud-detail">替代滑手機的健康睡前習慣</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-head">
+          <span class="card-icon">⚙️</span>
+          <span class="card-title">改善機制</span>
+          <span class="card-accent-line"></span>
+        </div>
+        <div class="mech-list">
+          <div class="mech-item"><div class="mech-num">1</div><div class="mech-text">慢頻舒緩節律氣壓刺激副交感神經，自動啟動「休息模式」</div></div>
+          <div class="mech-item"><div class="mech-num">2</div><div class="mech-text">搭配 42°C 低溫加熱，降低皮質醇分泌，睡眠品質明顯改善</div></div>
+          <div class="mech-item"><div class="mech-num">3</div><div class="mech-text">規律韻律感平穩心率，縮短入眠時間</div></div>
+        </div>
+        <div class="tip-badge">⭐ 睡前 20 分鐘，創造儀式感保健習慣</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ④ 恢復 -->
+  <div class="mode-panel" id="panel-recovery" style="--c:#2563eb;--bg-light:#eff6ff;--border-c:#bfdbfe">
+    <div class="panel-hero">
+      <div class="panel-icon">⚡</div>
+      <div class="panel-hero-text">
+        <div class="panel-mode-en">Recovery Mode</div>
+        <div class="panel-mode-zh">恢復模式</div>
+        <div class="panel-tagline">間歇強壓加速淋巴循環，縮短乳酸清除時間，讓你更快重返場上。</div>
+      </div>
+    </div>
+    <div class="three-col">
+      <div class="info-card">
+        <div class="card-head">
+          <span class="card-icon">🎯</span>
+          <span class="card-title">核心痛點</span>
+          <span class="card-accent-line"></span>
+        </div>
+        <div class="pain-item"><div class="pain-dot"></div><div class="pain-text">大量運動後乳酸堆積，延遲性肌肉痠痛</div></div>
+        <div class="pain-item"><div class="pain-dot"></div><div class="pain-text">淋巴循環滯緩，代謝廢物無法快速清除</div></div>
+        <div class="pain-item"><div class="pain-dot"></div><div class="pain-text">恢復期過長，影響隔日運動表現</div></div>
+        <div class="pain-item"><div class="pain-dot"></div><div class="pain-text">缺乏專業恢復設備，只能被動等待</div></div>
+      </div>
+      <div class="info-card">
+        <div class="card-head">
+          <span class="card-icon">👥</span>
+          <span class="card-title">目標族群</span>
+          <span class="card-accent-line"></span>
+        </div>
+        <div class="aud-grid">
+          <div class="aud-item">
+            <span class="aud-emoji">🏃</span>
+            <div class="aud-info">
+              <div class="aud-name">馬拉松／路跑者</div>
+              <div class="aud-detail">長跑後的淋巴引流與肌肉消腫</div>
+            </div>
+          </div>
+          <div class="aud-item">
+            <span class="aud-emoji">🏋️</span>
+            <div class="aud-info">
+              <div class="aud-name">健身族</div>
+              <div class="aud-detail">腿推、深蹲後的肌肉快速恢復</div>
+            </div>
+          </div>
+          <div class="aud-item">
+            <span class="aud-emoji">🏓</span>
+            <div class="aud-info">
+              <div class="aud-name">球類運動員</div>
+              <div class="aud-detail">連續賽事間的快速恢復補給</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-head">
+          <span class="card-icon">⚙️</span>
+          <span class="card-title">改善機制</span>
+          <span class="card-accent-line"></span>
+        </div>
+        <div class="mech-list">
+          <div class="mech-item"><div class="mech-num">1</div><div class="mech-text">間歇強壓模式加速淋巴循環，乳酸清除時間縮短 30–50%</div></div>
+          <div class="mech-item"><div class="mech-num">2</div><div class="mech-text">8 段壓力交替媲美專業運動恢復設備的效果</div></div>
+          <div class="mech-item"><div class="mech-num">3</div><div class="mech-text">運動後 1 小時內使用，最大化恢復效率</div></div>
+        </div>
+        <div class="tip-badge">⭐ 球場賽後必備，快速重返最佳狀態</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑤ 按摩 -->
+  <div class="mode-panel" id="panel-massage" style="--c:#e11d48;--bg-light:#fff1f2;--border-c:#fecdd3">
+    <div class="panel-hero">
+      <div class="panel-icon">💆</div>
+      <div class="panel-hero-text">
+        <div class="panel-mode-en">Massage Mode</div>
+        <div class="panel-mode-zh">按摩模式</div>
+        <div class="panel-tagline">全腿腔室立體包覆，日常保健首選，辦公中亦可同步使用。</div>
+      </div>
+    </div>
+    <div class="three-col">
+      <div class="info-card">
+        <div class="card-head">
+          <span class="card-icon">🎯</span>
+          <span class="card-title">核心痛點</span>
+          <span class="card-accent-line"></span>
+        </div>
+        <div class="pain-item"><div class="pain-dot"></div><div class="pain-text">長時間靜態姿勢，下肢血液循環滯緩</div></div>
+        <div class="pain-item"><div class="pain-dot"></div><div class="pain-text">腿部麻木感、沉重感影響工作效率</div></div>
+        <div class="pain-item"><div class="pain-dot"></div><div class="pain-text">缺乏日常保健習慣，問題持續累積</div></div>
+        <div class="pain-item"><div class="pain-dot"></div><div class="pain-text">沒有時間專程去按摩，需要便利方案</div></div>
+      </div>
+      <div class="info-card">
+        <div class="card-head">
+          <span class="card-icon">👥</span>
+          <span class="card-title">目標族群</span>
+          <span class="card-accent-line"></span>
+        </div>
+        <div class="aud-grid">
+          <div class="aud-item">
+            <span class="aud-emoji">💻</span>
+            <div class="aud-info">
+              <div class="aud-name">久坐辦公族</div>
+              <div class="aud-detail">開會或處理文件時同步使用</div>
+            </div>
+          </div>
+          <div class="aud-item">
+            <span class="aud-emoji">✈️</span>
+            <div class="aud-info">
+              <div class="aud-name">商務人士</div>
+              <div class="aud-detail">出差飯店的便攜保健必備品</div>
+            </div>
+          </div>
+          <div class="aud-item">
+            <span class="aud-emoji">🧓</span>
+            <div class="aud-info">
+              <div class="aud-name">中高齡族群</div>
+              <div class="aud-detail">日常循環保健，預防靜脈曲張</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-head">
+          <span class="card-icon">⚙️</span>
+          <span class="card-title">改善機制</span>
+          <span class="card-accent-line"></span>
+        </div>
+        <div class="mech-list">
+          <div class="mech-item"><div class="mech-num">1</div><div class="mech-text">全腿腔室立體按摩，從腳底板到膝蓋 360° 包覆刺激</div></div>
+          <div class="mech-item"><div class="mech-num">2</div><div class="mech-text">11 種氣囊組合 × 6 段壓力，精準針對個人敏感區域</div></div>
+          <div class="mech-item"><div class="mech-num">3</div><div class="mech-text">持續刺激微循環，改善久坐導致的下肢滯緩</div></div>
+        </div>
+        <div class="tip-badge">⭐ 使用頻率最高，日常保健首選模式</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ⑥ 按壓 -->
+  <div class="mode-panel" id="panel-press" style="--c:#059669;--bg-light:#ecfdf5;--border-c:#6ee7b7">
+    <div class="panel-hero">
+      <div class="panel-icon">🩺</div>
+      <div class="panel-hero-text">
+        <div class="panel-mode-en">Press Mode</div>
+        <div class="panel-mode-zh">按壓模式</div>
+        <div class="panel-tagline">持續定點加壓對抗重力，輔助水腫與末梢循環管理，CGM 血糖教練最強搭檔。</div>
+      </div>
+    </div>
+    <div class="three-col">
+      <div class="info-card">
+        <div class="card-head">
+          <span class="card-icon">🎯</span>
+          <span class="card-title">核心痛點</span>
+          <span class="card-accent-line"></span>
+        </div>
+        <div class="pain-item"><div class="pain-dot"></div><div class="pain-text">末梢神經病變，腿部麻木、冷感症狀</div></div>
+        <div class="pain-item"><div class="pain-dot"></div><div class="pain-text">糖尿病造成足部水腫，需非藥物輔助</div></div>
+        <div class="pain-item"><div class="pain-dot"></div><div class="pain-text">靜脈曲張前期，靜脈血液回流障礙</div></div>
+        <div class="pain-item"><div class="pain-dot"></div><div class="pain-text">長途搭機後雙腿腫脹，深靜脈血栓風險</div></div>
+      </div>
+      <div class="info-card">
+        <div class="card-head">
+          <span class="card-icon">👥</span>
+          <span class="card-title">目標族群</span>
+          <span class="card-accent-line"></span>
+        </div>
+        <div class="aud-grid">
+          <div class="aud-item">
+            <span class="aud-emoji">🩸</span>
+            <div class="aud-info">
+              <div class="aud-name">血糖管理族群</div>
+              <div class="aud-detail">搭配 CGM 監測，管理末梢循環問題</div>
+            </div>
+          </div>
+          <div class="aud-item">
+            <span class="aud-emoji">🦵</span>
+            <div class="aud-info">
+              <div class="aud-name">靜脈曲張前期</div>
+              <div class="aud-detail">非手術輔助保健的第一選擇</div>
+            </div>
+          </div>
+          <div class="aud-item">
+            <span class="aud-emoji">✈️</span>
+            <div class="aud-info">
+              <div class="aud-name">長途旅行者</div>
+              <div class="aud-detail">搭機前後各使用 30 分鐘預防腫脹</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="info-card">
+        <div class="card-head">
+          <span class="card-icon">⚙️</span>
+          <span class="card-title">改善機制</span>
+          <span class="card-accent-line"></span>
+        </div>
+        <div class="mech-list">
+          <div class="mech-item"><div class="mech-num">1</div><div class="mech-text">持續定點加壓模擬「醫療彈力襪」效果，對抗重力促進靜脈回流</div></div>
+          <div class="mech-item"><div class="mech-num">2</div><div class="mech-text">改善末梢神經病變初期的麻木、冷感症狀</div></div>
+          <div class="mech-item"><div class="mech-num">3</div><div class="mech-text">長途飛行後 30 分鐘使用，有效預防深靜脈血栓風險</div></div>
+        </div>
+        <div class="tip-badge">⭐ CGM 血糖教練最強產品連結點</div>
+      </div>
+    </div>
+    <div style="margin-top:16px">
+      <div class="highlight-box" style="--c:#059669;--bg-light:#ecfdf5">
+        <div class="highlight-label">益力康跨界整合</div>
+        <div class="highlight-text">糖尿病患者 CGM 數據顯示末梢循環異常時，按壓模式提供非藥物輔助管理方案，形成「監測 → 預警 → 改善」的完整大健康閉環。（建議先諮詢醫師評估）</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end panel-wrap -->
+
+<div class="footer-note">
+  <strong>益力康生技集團</strong>｜腿部舒緩儀 FE-2510H｜以上資訊僅供參考，有特殊健康狀況者請先諮詢醫師
+</div>
+
+<script>
+function switchMode(id, btn) {
+  // deactivate all tabs
+  document.querySelectorAll('.mode-tab').forEach(t => t.classList.remove('active'));
+  // deactivate all panels
+  document.querySelectorAll('.mode-panel').forEach(p => p.classList.remove('active'));
+  // activate chosen
+  btn.classList.add('active');
+  document.getElementById('panel-' + id).classList.add('active');
+}
+</script>
+</body>
+</html>
